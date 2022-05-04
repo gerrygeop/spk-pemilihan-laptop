@@ -9,7 +9,7 @@ class AddIsAdminColumnToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('role')->default('112');
+            $table->string('role')->default('112');
         });
     }
 

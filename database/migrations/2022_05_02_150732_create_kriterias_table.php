@@ -10,10 +10,11 @@ class CreateKriteriasTable extends Migration
     {
         Schema::create('kriterias', function (Blueprint $table) {
             $table->id();
-            $table->string('kode');
-            $table->string('nama');
+            $table->string('kode')->unique();
+            $table->string('nama')->unique();
             $table->string('keterangan');
-            $table->string('bobot');
+            $table->float('bobot');
+            $table->string('type_inputan');
             $table->timestamps();
         });
     }
