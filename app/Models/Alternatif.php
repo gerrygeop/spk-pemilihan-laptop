@@ -10,4 +10,12 @@ class Alternatif extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function removeSlug($text)
+    {
+        $text = str_replace("_"," ", $text);
+        $text = ucfirst($text);
+        return $text;
+    }
+
 }

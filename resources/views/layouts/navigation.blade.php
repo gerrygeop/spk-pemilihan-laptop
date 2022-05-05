@@ -17,9 +17,11 @@
                         <x-nav-link :href="route('d.dashboard')" :active="request()->routeIs('d.dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
-
                         <x-nav-link :href="route('d.kriteria.index')" :active="request()->routeIs('d.kriteria.*')">
                             {{ __('Kriteria') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('d.alternatif.index')" :active="request()->routeIs('d.alternatif.*')">
+                            {{ __('Alternatif') }}
                         </x-nav-link>
                     @endif
 
@@ -75,6 +77,12 @@
             @if (auth()->user()->role == 'admiral')
                 <x-responsive-nav-link :href="route('d.dashboard')" :active="request()->routeIs('d.dashboard')">
                     {{ __('Dashboard') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('d.kriteria.index')" :active="request()->routeIs('d.kriteria.*')">
+                    {{ __('Kriteria') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('d.alternatif.index')" :active="request()->routeIs('d.alternatif.*')">
+                    {{ __('Alternatif') }}
                 </x-responsive-nav-link>
             @endif
 

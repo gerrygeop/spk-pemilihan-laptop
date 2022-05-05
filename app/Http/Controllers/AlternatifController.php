@@ -3,83 +3,56 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alternatif;
+use App\Models\Kriteria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class AlternatifController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $all_alternatif = Alternatif::latest()->get();
+        return view('dapur.alternatif.index', compact('all_alternatif'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $alternatif = new Alternatif;
+        $alternatifColumn = $alternatif->getConnection()->getSchemaBuilder()->getColumnListing('alternatifs');
+        $alternatifColumn = Arr::except($alternatifColumn, [0, 1, 2, 3, 4]);
+        return view('dapur.alternatif.create', compact('alternatif', 'alternatifColumn'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        Alternatif::create($request->except('_token'));
+        return redirect()->route('d.alternatif.index')->with('success', 'Alternatif berhasil ditambah');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Alternatif  $alternatif
-     * @return \Illuminate\Http\Response
-     */
     public function show(Alternatif $alternatif)
     {
-        //
+        $alt = new Alternatif;
+        $alternatifColumn = $alt->getConnection()->getSchemaBuilder()->getColumnListing('alternatifs');
+        $alternatifColumn = Arr::except($alternatifColumn, [0, 1, 2, 3, 4]);
+        return view('dapur.alternatif.show', compact('alternatif', 'alternatifColumn'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Alternatif  $alternatif
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Alternatif $alternatif)
     {
-        //
+        $alternatifColumn = $alternatif->getConnection()->getSchemaBuilder()->getColumnListing('alternatifs');
+        $alternatifColumn = Arr::except($alternatifColumn, [0, 1, 2, 3, 4]);
+        return view('dapur.alternatif.edit', compact('alternatif', 'alternatifColumn'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Alternatif  $alternatif
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Alternatif $alternatif)
     {
-        //
+        $alternatif->update($request->except('_token'));
+        return redirect()->route('d.alternatif.index')->with('success', 'Alternatif berhasil ditambah');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Alternatif  $alternatif
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Alternatif $alternatif)
     {
-        //
+        $alternatif->delete();
+        return redirect()->route('d.alternatif.index')->with('success', 'Alternatif berhasil dihapus');
     }
 }
