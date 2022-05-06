@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 use App\Http\Controllers\{
     KriteriaController,
     AlternatifController,
+    RepresentasiController,
 };
 
 
@@ -44,6 +45,14 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/alternatif/{alternatif}', [AlternatifController::class, 'show'])->name('alternatif.show');
         Route::put('/alternatif/{alternatif}', [AlternatifController::class, 'update'])->name('alternatif.update');
         Route::get('/alternatif/{alternatif}/edit', [AlternatifController::class, 'edit'])->name('alternatif.edit');
+
+        // Representasi
+        Route::get('/representasi', [RepresentasiController::class, 'index'])->name('representasi.index');
+        Route::post('/representasi/{kriteria}', [RepresentasiController::class, 'store'])->name('representasi.store');
+        Route::get('/representasi/{kriteria}/create', [RepresentasiController::class, 'create'])->name('representasi.create');
+        Route::delete('/representasi/{kriteria}/{representasi}', [RepresentasiController::class, 'destroy'])->name('representasi.destroy');
+        Route::put('/representasi/{representasi}', [RepresentasiController::class, 'update'])->name('representasi.update');
+        Route::get('/representasi/{kriteria}/edit/{representasi}', [RepresentasiController::class, 'edit'])->name('representasi.edit');
     });
     
 });

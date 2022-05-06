@@ -11,7 +11,7 @@ class AlternatifController extends Controller
 {
     public function index()
     {
-        $all_alternatif = Alternatif::latest()->get();
+        $all_alternatif = Alternatif::all();
         return view('dapur.alternatif.index', compact('all_alternatif'));
     }
 

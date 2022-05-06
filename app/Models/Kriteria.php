@@ -11,8 +11,9 @@ class Kriteria extends Model
 
     protected $guarded = ['id'];
 
-    public function setUp() {
-        parent::setUp();
+    public function representasi()
+    {
+        return $this->hasMany(Representasi::class);
     }
 
     public function isChecked($option)

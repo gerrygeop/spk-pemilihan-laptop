@@ -23,6 +23,9 @@
                         <x-nav-link :href="route('d.alternatif.index')" :active="request()->routeIs('d.alternatif.*')">
                             {{ __('Alternatif') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('d.representasi.index')" :active="request()->routeIs('d.representasi.*')">
+                            {{ __('Representasi') }}
+                        </x-nav-link>
                     @endif
 
                 </div>
@@ -83,6 +86,9 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('d.alternatif.index')" :active="request()->routeIs('d.alternatif.*')">
                     {{ __('Alternatif') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('d.representasi.index')" :active="request()->routeIs('d.representasi.*')">
+                    {{ __('Representasi') }}
                 </x-responsive-nav-link>
             @endif
 
