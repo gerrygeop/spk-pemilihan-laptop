@@ -1,17 +1,22 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Home') }}
-        </h2>
+        Beranda
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in!
+    <x-container>
+        <x-box>
+            <div class="flex flex-col items-center">
+                <div class="mb-5">
+                    <h3 class="text-xl md:text-2xl font-semibold">Sistem Pendukung Keputusan - Rekomendasi Pemilihan Laptop</h3>
+                </div>
+        
+                <div class="flex items-center">
+                    <a href="{{ route('rekomendasi.create') }}" class="btn-primary text-sm md:text-lg">
+                        <i class='bx bx-search bx-sm mr-1'></i>
+                        <span>Cari Laptop</span>
+                    </a>
                 </div>
             </div>
-        </div>
-    </div>
+        </x-box>
+    </x-container>
 </x-app-layout>

@@ -6,9 +6,8 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ url('/') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
-                    </a>
+                    <img src="{{ asset('img/w-transparent.png') }}" class="h-14 w-auto rounded-full" />
+                    {{-- <x-application-logo class="block h-10 w-auto fill-current text-gray-600" /> --}}
                 </div>
 
                 <!-- Navigation Links -->
@@ -17,21 +16,24 @@
                     @auth
                         @if (auth()->user()->role == 'admiral')
                             <x-nav-link :href="route('d.dashboard')" :active="request()->routeIs('d.dashboard')">
-                                {{ __('Dashboard') }}
+                                Dashboard
                             </x-nav-link>
                             <x-nav-link :href="route('d.kriteria.index')" :active="request()->routeIs('d.kriteria.*')">
-                                {{ __('Kriteria') }}
+                                Kriteria
                             </x-nav-link>
                             <x-nav-link :href="route('d.alternatif.index')" :active="request()->routeIs('d.alternatif.*')">
-                                {{ __('Alternatif') }}
+                                Alternatif
                             </x-nav-link>
                             <x-nav-link :href="route('d.representasi.index')" :active="request()->routeIs('d.representasi.*')">
-                                {{ __('Representasi') }}
+                                Representasi
                             </x-nav-link>
 
                         @else
+                            <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                                Beranda
+                            </x-nav-link>
                             <x-nav-link :href="route('rekomendasi.index')" :active="request()->routeIs('rekomendasi.*')">
-                                {{ __('Rekomendasi') }}
+                                Rekomendasi
                             </x-nav-link>
 
                         @endif
@@ -40,8 +42,8 @@
                 </div>
             </div>
 
+            <!-- Settings Dropdown -->
             @auth
-                <!-- Settings Dropdown -->
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
@@ -72,6 +74,7 @@
                 </div>
             @endauth
 
+            <!-- Login/Register -->
             @guest
                 <div class="hidden sm:flex sm:items-center">
                     <a href="{{ route('login') }}" class="text-sm text-gray-700">Log in</a>
@@ -101,17 +104,26 @@
             <div class="pt-2 pb-3 space-y-1">
                 @if (auth()->user()->role == 'admiral')
                     <x-responsive-nav-link :href="route('d.dashboard')" :active="request()->routeIs('d.dashboard')">
-                        {{ __('Dashboard') }}
+                        Dashboard
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('d.kriteria.index')" :active="request()->routeIs('d.kriteria.*')">
-                        {{ __('Kriteria') }}
+                        Kriteria
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('d.alternatif.index')" :active="request()->routeIs('d.alternatif.*')">
-                        {{ __('Alternatif') }}
+                        Alternatif
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('d.representasi.index')" :active="request()->routeIs('d.representasi.*')">
-                        {{ __('Representasi') }}
+                        Representasi
                     </x-responsive-nav-link>
+
+                @else
+                    <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                        Beranda
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('rekomendasi.index')" :active="request()->routeIs('rekomendasi.*')">
+                        Rekomendasi
+                    </x-responsive-nav-link>
+                    
                 @endif
             </div>
 
@@ -136,6 +148,19 @@
                 </div>
             </div>
         @endauth
+
+        @guest
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                    Login
+                </x-responsive-nav-link>
+                @if (Route::has('register'))
+                    <x-responsive-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                        Register
+                    </x-responsive-nav-link>
+                @endif
+            </div>
+        @endguest
 
     </div>
 </nav>

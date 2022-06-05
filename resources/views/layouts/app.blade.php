@@ -8,7 +8,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400&display=swap" rel="stylesheet">
+
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 
     <!-- Styles -->
@@ -19,16 +20,18 @@
     @livewireStyles
     
 </head>
-<body class="font-sans antialiased">
+<body class="font-sans text-gray-800 antialiased">
 
-    <div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen bg-slate-200">
         @include('layouts.navigation')
 
         <!-- Page Heading -->
         @isset($header)
             <header class="bg-white shadow">
-                <div class="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
+                <div class="max-w-6xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+                    <h2 class="font-medium text-lg text-slate-700 capitalize leading-relaxed">
+                        {{ $header }}
+                    </h2>
                 </div>
             </header>
         @endisset
