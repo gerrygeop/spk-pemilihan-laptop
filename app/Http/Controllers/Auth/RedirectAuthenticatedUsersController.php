@@ -9,9 +9,10 @@ class RedirectAuthenticatedUsersController extends Controller
 {
     public function home()
     {
-        if (auth()->user()->role === 'admiral') {
+        if ( auth()->user()->role == 'admiral' ) {
             return redirect()->route('d.dashboard');
-        } else {
+        }
+        if ( auth()->user()->role == 'tamu') {
             return redirect()->route('home');
         }
         

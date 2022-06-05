@@ -22,6 +22,7 @@ class CheckRole
         if ( $role == 'tamu' && auth()->user()->role != 'tamu' ) {
             abort(403);
         }
+        
         return $next($request);
     }
 }
