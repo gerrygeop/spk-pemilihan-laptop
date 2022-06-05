@@ -30,11 +30,18 @@
                         @forelse ($kriteria->representasi as $rep)
                             <tr>
                                 <x-td>{{ $rep->keterangan }}</x-td>
-                                <x-td class="flex items-center">
-                                    <span class="font-bold">{{ $rep->min }}</span>
-                                    <i class='bx bx-minus mx-1'></i>
-                                    <span class="font-bold">{{ $rep->max }}</span>
-                                </x-td>
+
+                                @if ($rep->min && $rep->max)
+                                    <x-td class="flex items-center">
+                                        <span class="font-bold">{{ $rep->min }}</span>
+                                        <i class='bx bx-minus mx-1'></i>
+                                        <span class="font-bold">{{ $rep->max }}</span>
+                                    </x-td>
+                                @else
+                                    <x-td class="flex items-center">
+                                        <span class="font-bold">{{ $rep->nilai }}</span>
+                                    </x-td>
+                                @endif
     
                                 <td class="px-6 py-4 whitespace-nowrap text-sm">
                                     <div class="flex items-center justify-end">

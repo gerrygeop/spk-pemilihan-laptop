@@ -19,7 +19,7 @@ class AlternatifController extends Controller
     {
         $alternatif = new Alternatif;
         $alternatifColumn = $alternatif->getConnection()->getSchemaBuilder()->getColumnListing('alternatifs');
-        $alternatifColumn = Arr::except($alternatifColumn, [0, 1, 2, 3, 4]);
+        $alternatifColumn = Arr::except($alternatifColumn, [0, 1, 2, 3]);
         return view('dapur.alternatif.create', compact('alternatif', 'alternatifColumn'));
     }
 
@@ -33,7 +33,7 @@ class AlternatifController extends Controller
     {
         $alt = new Alternatif;
         $alternatifColumn = $alt->getConnection()->getSchemaBuilder()->getColumnListing('alternatifs');
-        $alternatifColumn = Arr::except($alternatifColumn, [0, 1, 2, 3, 4]);
+        $alternatifColumn = Arr::except($alternatifColumn, [0, 1, 2, 3]);
         return view('dapur.alternatif.show', compact('alternatif', 'alternatifColumn'));
     }
 

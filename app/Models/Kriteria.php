@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Kriteria extends Model
 {
@@ -32,5 +33,10 @@ class Kriteria extends Model
         } else {
             return '';
         }
+    }
+
+    public function toSlug()
+    {
+        return Str::of($this->nama)->slug('_');
     }
 }

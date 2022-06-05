@@ -15,7 +15,7 @@
         <x-table>
             <thead class="bg-slate-50">
                 <tr>
-                    <x-th>Kode</x-th>
+                    <x-th>No</x-th>
                     <x-th>Nama</x-th>
                     <th scope="col" class="relative px-6 py-3">
                         <span class="sr-only">Actions</span>
@@ -26,7 +26,7 @@
             <tbody class="bg-white divide-y divide-slate-200">
                 @forelse ($all_alternatif as $alternatif)
                     <tr>
-                        <x-td>{{ $alternatif->kode }}</x-td>
+                        <x-td>{{ $loop->iteration }}</x-td>
                         <x-td>{{ $alternatif->nama }}</x-td>
 
                         <td class="px-6 py-4 whitespace-nowrap text-sm">

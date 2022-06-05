@@ -6,6 +6,7 @@ use App\Http\Controllers\{
     KriteriaController,
     AlternatifController,
     RepresentasiController,
+    RekomendasiController,
 };
 
 
@@ -17,11 +18,7 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
 
     // Redirect to check role
-    Route::get("/redirectAuthenticatedUsers", [RedirectAuthenticatedUsersController::class, "home"]);
-
-    Route::get('/home', function () {
-        return view('home');
-    })->name('home');
+    Route::get('/redirectAuthenticatedUsers', [RedirectAuthenticatedUsersController::class, 'home']);
 
     // Dashboard Admiral & Prefix /d
     Route::middleware(['checkRole:admiral'])->prefix('d')->name('d.')->group(function() {
@@ -53,6 +50,18 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/representasi/{kriteria}/{representasi}', [RepresentasiController::class, 'destroy'])->name('representasi.destroy');
         Route::put('/representasi/{representasi}', [RepresentasiController::class, 'update'])->name('representasi.update');
         Route::get('/representasi/{kriteria}/edit/{representasi}', [RepresentasiController::class, 'edit'])->name('representasi.edit');
+    });
+
+    Route::middleware(['checkRole:tamu'])->group(function() {
+        Route::get('/home', function () {
+            return view('home');
+        })->name('home');
+
+        // Rekomendasi
+        Route::get('/rekomendasi', [RekomendasiController::class, 'index'])->name('rekomendasi.index');
+        Route::post('/rekomendasi', [RekomendasiController::class, 'store'])->name('rekomendasi.store');
+        Route::get('/rekomendasi/create', [RekomendasiController::class, 'create'])->name('rekomendasi.create');
+        Route::get('/rekomendasi/{alternatif}', [RekomendasiController::class, 'show'])->name('rekomendasi.show');
     });
     
 });

@@ -1,9 +1,5 @@
 <section>
     <div class="flex flex-col space-y-7">
-        <div>
-            <x-label for="kode" value="Kode" class="mb-1" />
-            <x-input type="text" name="kode" id="kode" class="w-full focus:ring-0 uppercase" value="{{ old('kode', $alternatif->kode) }}" required />
-        </div>
     
         <div>
             <x-label for="nama" value="Nama Alternatif" class="mb-1" />
