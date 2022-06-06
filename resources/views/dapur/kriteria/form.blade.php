@@ -13,11 +13,11 @@
         <div>
             <x-label value="Keterangan" class="mb-1" />
             <div class="flex">
-                <label for="benefit" class="text-base font-medium text-gray-900 flex items-center mr-6">
+                <label for="benefit" class="text-base font-medium text-gray-800 flex items-center mr-6">
                     <x-input type="radio" id="benefit" value="benefit" name="keterangan" class="mr-2" checked="{{ $kriteria->isChecked('benefit') }}" />
                     Benefit
                 </label>
-                <label for="cost" class="text-base font-medium text-gray-900 flex items-center mr-4">
+                <label for="cost" class="text-base font-medium text-gray-800 flex items-center mr-4">
                     <x-input type="radio" id="cost" value="cost" name="keterangan" class="mr-2" checked="{{ $kriteria->isChecked('cost') }}" />
                     Cost
                 </label>

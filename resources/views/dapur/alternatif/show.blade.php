@@ -14,14 +14,14 @@
 
         <div class="bg-white shadow overflow-hidden sm:rounded-lg">
             <div class="flex items-center px-4 py-5 sm:px-6">
-                <h3 class="text-lg leading-6 font-medium text-gray-900">{{ $alternatif->nama }}</h3>
+                <h3 class="text-lg leading-6 font-medium text-gray-800">{{ $alternatif->nama }}</h3>
             </div>
             <div class="border-t border-gray-200">
                 <dl>
                     @foreach ($alternatifColumn as $key => $column)
                         <div class="bg-white border-b px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-600 uppercase">{{ $alternatif->removeSlug($column) }}</dt>
-                            <dd class="mt-1 text-base font-medium text-gray-900 sm:mt-0 sm:col-span-2">{{ $alternatif[$column] }}</dd>
+                            <dd class="mt-1 text-base font-medium text-gray-800 sm:mt-0 sm:col-span-2">{{ $alternatif[$column] }}</dd>
                         </div>
                     @endforeach
                 </dl>

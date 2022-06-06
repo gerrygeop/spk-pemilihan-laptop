@@ -29,7 +29,7 @@
                         <x-td>{{ $loop->iteration }}</x-td>
                         <x-td>{{ $alternatif->nama }}</x-td>
 
-                        <td class="px-6 py-4 whitespace-nowrap text-sm">
+                        <td class="px-6 py-2 whitespace-nowrap text-sm">
                             <div class="flex items-center justify-end">
                                 <a href="{{ route('d.alternatif.show', $alternatif) }}" class="btn-hover-primary">Detail</a>
                                 <a href="{{ route('d.alternatif.edit', $alternatif) }}" class="btn-hover-primary">Edit</a>
