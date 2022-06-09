@@ -19,9 +19,17 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     @livewireStyles
+
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
     
 </head>
 <body class="font-sans text-gray-800 antialiased">
+
+    @isset($message)
+        <x-banner :message="$message" />
+    @endisset
 
     <div class="min-h-screen bg-slate-200">
         @include('layouts.navigation')

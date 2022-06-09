@@ -3,32 +3,49 @@
     
         <div>
             <x-label for="nama" value="Nama Alternatif" class="mb-1" />
-            <x-input type="text" name="nama" id="nama" class="w-full focus:ring-0" value="{{ old('nama', $alternatif->nama) }}" required />
+            <x-input type="text" name="nama" id="nama" class="w-full focus:ring-0" value="{{ old('nama', $alternatif->nama) }}" required autofocus />
+
+            @error('nama')
+                <p class="mt-1 text-red-500 text-sm italic">{{ $message }}</p>
+            @enderror
         </div>
 
-        @foreach ($alternatifColumn as $key => $column)
+        @foreach ($kriterias as $ktr)
+            @php
+                $ktr_name_slug = trim($ktr->nama);
+                $ktr_name_slug = strtolower($ktr_name_slug);
+                $ktr_name_slug = str_replace(" ","_", $ktr_name_slug);
+            @endphp
+
             <div>
-                <x-label for="{{ $column }}" value="{{ $alternatif->removeSlug($column) }}" class="mb-1" />
-                <input 
-                    type="text" 
-                    name="{{ $column }}" 
-                    id="{{ $column }}" 
-                    class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" 
-                    value="{{ old($column, $alternatif[$column]) }}" 
-                    required
-                />
+                <x-label for="{{ $ktr_name_slug }}" value="{{ $ktr->nama }}" class="mb-1" />
+                
+                @if ( $ktr->representasi->first()->nilai == null )
+                    <x-input 
+                        type="{{ $ktr->type_inputan == 'integer' ? 'number':'text' }}"
+                        name="{{ $ktr_name_slug }}" 
+                        id="{{ $ktr_name_slug }}" 
+                        class="w-full" 
+                        value="{{ old($ktr_name_slug, $alternatif[$ktr_name_slug]) }}" 
+                        required
+                    />
+
+                @else
+                    <x-select name="{{ $ktr_name_slug }}" id="{{ $ktr_name_slug }}" class="w-full">
+                        @foreach ($ktr->representasi as $rep)
+                            <option value="{{ $rep->keterangan }}" {{ $rep->keterangan == $alternatif[$ktr_name_slug] ? 'selected':'' }}>
+                                {{ $rep->keterangan }}
+                            </option>
+                        @endforeach
+                    </x-select>
+
+                @endif
+
+                @error($ktr_name_slug)
+                    <p class="mt-1 text-red-500 text-sm italic">{{ $message }}</p>
+                @enderror
             </div>
         @endforeach
-
-
-        {{-- <div>
-            <x-label for="type_inputan" value="Tipe Data Inputan" class="mb-1" />
-            <select id="type_inputan" name="type_inputan" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring-0">
-                <option value="string" {{ $kriteria->isSelected('string') }}>String</option>
-                <option value="integer" {{ $kriteria->isSelected('integer') }}>Integer</option>
-                <option value="float" {{ $kriteria->isSelected('float') }}>Float</option>
-            </select>
-        </div> --}}
     
     </div>
     

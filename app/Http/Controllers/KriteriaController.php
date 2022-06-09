@@ -9,9 +9,12 @@ use App\Http\Requests\KriteriaRequest;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
+use App\Http\Traits\ColumnTrait;
 
 class KriteriaController extends Controller
 {
+    use ColumnTrait;
+
     public function index()
     {
         $all_kriteria = Kriteria::orderBy('kode')->get();
@@ -30,7 +33,9 @@ class KriteriaController extends Controller
 
         $validate = $request->validated();
         $kriteria = Kriteria::create($validate);
+
         $this->addAlternatifColumn($kriteria->nama, $validate['type_inputan']);
+        $this->addAlternatifMaxBobotColumn($kriteria->nama);
         
         return redirect()->route('d.kriteria.index')->with('success', 'Kriteria berhasil ditambah');
     }
@@ -53,6 +58,7 @@ class KriteriaController extends Controller
         }
         if ( $kriteria->nama != $validate['nama'] ) {
             $this->updateAlternatifColumnName($validate['nama'], $kriteria->nama); 
+            $this->updateAlternatifMaxBobotColumnName($validate['nama'], $kriteria->nama); 
         }
         
         $kriteria->update($validate);
@@ -70,83 +76,4 @@ class KriteriaController extends Controller
         return redirect()->route('d.kriteria.index')->with('success', 'Kriteria berhasil dihapus');
     }
 
-    private function checkIfNameExists($columnName)
-    {
-        $columnName = Str::of($columnName)->slug('_');
-        if ( $this->columnExists($columnName) ) { 
-            return back()->with('name_exists', 'Nama kriteria sudah ada'); 
-        }
-    }
-
-    private function columnExists($columnName)
-    {
-        if ( Schema::hasColumn('alternatifs', $columnName) ) {
-            return true;
-        }
-        return false;
-    }
-
-    private function addAlternatifColumn($columnName, $typeInputan = null)
-    {
-        $columnName = Str::of($columnName)->slug('_');
-        Schema::table('alternatifs', function (Blueprint $table) use ($columnName, $typeInputan) {
-            switch ($typeInputan) {
-                case 'string':
-                    $table->string($columnName)->nullable();
-                    break;
-                case 'integer':
-                    $table->integer($columnName)->nullable();
-                    break;
-                case 'float':
-                    $table->float($columnName, 0)->nullable();
-                    break;
-                default:
-                    $table->string($columnName)->nullable();
-            }
-        });
-    }
-
-    private function updateAlternatifColumnName($newName, $oldName)
-    {
-        $newName = $this->toSlug($newName);
-        $oldName = $this->toSlug($oldName);
-        Schema::table('alternatifs', function (Blueprint $table) use ($newName, $oldName) {
-            $table->renameColumn($oldName, $newName);
-        });
-    }
-
-    private function updateAlternatifColumnType($columnName, $typeInputan) 
-    {
-        $columnName = Str::of($columnName)->slug('_');
-        Schema::table('alternatifs', function (Blueprint $table) use ($columnName, $typeInputan) {
-            switch ($typeInputan) {
-                case 'string':
-                    $table->string($columnName)->nullable()->change();
-                    break;
-                case 'integer':
-                    $table->integer($columnName)->nullable()->change();
-                    break;
-                case 'float':
-                    $table->float($columnName, 0)->nullable()->change();
-                    break;
-                default:
-                    $table->string($columnName)->nullable()->change();
-            }
-        });
-    }
-
-    private function dropAlternatifColumn($columnName)
-    {
-        Schema::table('alternatifs', function (Blueprint $table) use ($columnName) {
-            $table->dropColumn($columnName);
-        });
-    }
-
-    private function toSlug($text)
-    {
-        $text = trim($text);
-        $text = strtolower($text);
-        $text = str_replace(" ","_", $text);
-        return $text;
-    }
 }

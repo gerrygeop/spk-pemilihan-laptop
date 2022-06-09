@@ -21,11 +21,11 @@
                             <x-nav-link :href="route('d.kriteria.index')" :active="request()->routeIs('d.kriteria.*')">
                                 Kriteria
                             </x-nav-link>
-                            <x-nav-link :href="route('d.alternatif.index')" :active="request()->routeIs('d.alternatif.*')">
-                                Alternatif
-                            </x-nav-link>
                             <x-nav-link :href="route('d.representasi.index')" :active="request()->routeIs('d.representasi.*')">
                                 Representasi
+                            </x-nav-link>
+                            <x-nav-link :href="route('d.alternatif.index')" :active="request()->routeIs('d.alternatif.*')">
+                                Alternatif
                             </x-nav-link>
 
                         @else
@@ -109,11 +109,11 @@
                     <x-responsive-nav-link :href="route('d.kriteria.index')" :active="request()->routeIs('d.kriteria.*')">
                         Kriteria
                     </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="route('d.alternatif.index')" :active="request()->routeIs('d.alternatif.*')">
-                        Alternatif
-                    </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('d.representasi.index')" :active="request()->routeIs('d.representasi.*')">
                         Representasi
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('d.alternatif.index')" :active="request()->routeIs('d.alternatif.*')">
+                        Alternatif
                     </x-responsive-nav-link>
 
                 @else
@@ -149,6 +149,7 @@
             </div>
         @endauth
 
+        <!-- Login/Register -->
         @guest
             <div class="pt-2 pb-3 space-y-1">
                 <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">

@@ -1,4 +1,10 @@
 <x-app-layout>
+    @if (session('success'))
+        <x-slot name="message">
+            {{ session('success') }}
+        </x-slot>
+    @endif
+
     <x-slot name="header">
         Alternatif
     </x-slot>
@@ -31,14 +37,11 @@
 
                         <td class="px-6 py-2 whitespace-nowrap text-sm">
                             <div class="flex items-center justify-end">
-                                <a href="{{ route('d.alternatif.show', $alternatif) }}" class="btn-hover-primary">Detail</a>
-                                <a href="{{ route('d.alternatif.edit', $alternatif) }}" class="btn-hover-primary">Edit</a>
+                                @if ( is_null($alternatif->alternatif_max_bobot) )
+                                    <a href="{{ route('d.alternatif.max-bobot', $alternatif) }}" class="btn-hover-primary">Hitung max</a>
+                                @endif
 
-                                <form action="{{ route('d.alternatif.destroy', $alternatif) }}" method="POST" onsubmit="return confirm('Yakin untuk menghapus?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn-hover-danger">Hapus</button>
-                                </form>
+                                <a href="{{ route('d.alternatif.show', $alternatif) }}" class="btn-hover-primary">Detail</a>
                             </div>
                         </td>
                     </tr>

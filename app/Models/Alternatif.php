@@ -18,4 +18,9 @@ class Alternatif extends Model
         return $text;
     }
 
+    public function alternatif_max_bobot()
+    {
+        return $this->hasOne(AlternatifMaxBobot::class);
+    }
+
 }

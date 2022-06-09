@@ -43,6 +43,10 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/alternatif/{alternatif}', [AlternatifController::class, 'update'])->name('alternatif.update');
         Route::get('/alternatif/{alternatif}/edit', [AlternatifController::class, 'edit'])->name('alternatif.edit');
 
+        // route hitung max bobot alternatif
+        Route::get('/alternatif/{alternatif}/hitung-max', [AlternatifController::class, 'storeMaxBobot'])->name('alternatif.max-bobot');
+        Route::get('/alternatif/{alternatif}/update-max', [AlternatifController::class, 'updateMaxBobot'])->name('alternatif.max-bobot-update');
+
         // Representasi
         Route::get('/representasi', [RepresentasiController::class, 'index'])->name('representasi.index');
         Route::post('/representasi/{kriteria}', [RepresentasiController::class, 'store'])->name('representasi.store');
