@@ -7,7 +7,7 @@
 
         @foreach ($all_kriteria as $kriteria)
             <div class="flex items-center justify-between mb-1">
-                <h4 class="text-gray-700 text-lg font-semibold">{{ $kriteria->nama }}</h4>
+                <h4 class="text-gray-700 text-lg font-medium">{{ $kriteria->nama }}</h4>
                 <a href="{{ route('d.representasi.create', $kriteria) }}" class="btn-primary">
                     <i class='bx bxs-plus-circle bx-xs mr-1'></i>
                     <span>Tambah Data</span>
@@ -32,14 +32,14 @@
                                 <x-td>{{ $rep->keterangan }}</x-td>
 
                                 @if ($rep->min && $rep->max)
-                                    <x-td class="flex items-center">
-                                        <span class="font-bold">{{ $rep->min }}</span>
+                                    <x-td>
+                                        <span class="font-medium">{{ $rep->min }}</span>
                                         <i class='bx bx-minus mx-1'></i>
-                                        <span class="font-bold">{{ $rep->max }}</span>
+                                        <span class="font-medium">{{ $rep->max }}</span>
                                     </x-td>
                                 @else
-                                    <x-td class="flex items-center">
-                                        <span class="font-bold">{{ $rep->nilai }}</span>
+                                    <x-td>
+                                        <span class="font-medium">{{ $rep->nilai }}</span>
                                     </x-td>
                                 @endif
     

@@ -1,7 +1,7 @@
 <x-app-layout>
     
     <x-slot name="header">
-        Representasi kriteria '<span class="font-bold">{{ $kriteria->nama }}</span>'
+        Representasi kriteria {{ $kriteria->nama }}
     </x-slot>
 
     <x-container>

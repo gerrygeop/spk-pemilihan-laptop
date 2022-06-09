@@ -29,6 +29,8 @@
             <x-input type="text" name="bobot" id="bobot" class="w-full focus:ring-0" value="{{ old('bobot', $kriteria->bobot) }}" required />
         </div>
 
+        <hr>
+
         <div>
             <x-label for="type_inputan" value="Tipe Data Inputan" class="mb-1" />
             <select id="type_inputan" name="type_inputan" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring-0">
