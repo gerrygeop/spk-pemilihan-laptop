@@ -39,4 +39,14 @@ class Kriteria extends Model
     {
         return Str::of($this->nama)->slug('_');
     }
+
+    public function min()
+    {
+        return $this->representasi->first()->min;
+    }
+
+    public function max()
+    {
+        return $this->representasi->last()->max;
+    }
 }

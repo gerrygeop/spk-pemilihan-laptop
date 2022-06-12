@@ -11,6 +11,21 @@ class Alternatif extends Model
 
     protected $guarded = ['id'];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
+    public function alternatif_max_bobot()
+    {
+        return $this->hasOne(AlternatifMaxBobot::class);
+    }
+
+    public function rekomendasi()
+    {
+        return $this->hasMany(Rekomendation::class);
+    }
+
     public function removeSlug($text)
     {
         $text = str_replace("_"," ", $text);
@@ -18,9 +33,15 @@ class Alternatif extends Model
         return $text;
     }
 
-    public function alternatif_max_bobot()
+    public function getCurrencyIfCurrency($column)
     {
-        return $this->hasOne(AlternatifMaxBobot::class);
+        if ( $this[$column] == $this->harga ) {
+            $this->harga = (int) $this->harga;
+            return 'Rp '. number_format($this[$column],2,",",".");
+        } else {
+            return $this[$column];
+        }
+
     }
 
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\{
     AlternatifController,
     RepresentasiController,
     RekomendasiController,
+    HomeController,
 };
 
 
@@ -57,15 +58,15 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware(['checkRole:tamu'])->group(function() {
-        Route::get('/home', function () {
-            return view('home');
-        })->name('home');
+        Route::get('/home', [HomeController::class, 'home'])->name('home');
 
         // Rekomendasi
         Route::get('/rekomendasi', [RekomendasiController::class, 'index'])->name('rekomendasi.index');
+        Route::get('/rekomendasi/{slug}/result', [RekomendasiController::class, 'result'])->name('rekomendasi.result');
         Route::post('/rekomendasi', [RekomendasiController::class, 'store'])->name('rekomendasi.store');
         Route::get('/rekomendasi/create', [RekomendasiController::class, 'create'])->name('rekomendasi.create');
-        Route::get('/rekomendasi/{alternatif}', [RekomendasiController::class, 'show'])->name('rekomendasi.show');
+
+        Route::get('/rekomendasi/{alternatif}/{slug?}', [RekomendasiController::class, 'show'])->name('laptop.show');
     });
     
 });

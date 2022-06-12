@@ -2,7 +2,7 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <img src="{{ asset('img/w-white.png') }}" class="w-20 h-20 rounded-full shadow-md" />
+                <img src="{{ asset('img/activity.png') }}" class="w-16 h-16 rounded-full shadow-md" />
             </a>
         </x-slot>
 
@@ -32,7 +32,10 @@
                                 required autocomplete="current-password" />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex items-center justify-end mt-8">
+                <a href="/" class="ml-3 btn-secondary">
+                    Kembali
+                </a>
                 <x-button class="ml-3">
                     {{ __('Log in') }}
                 </x-button>

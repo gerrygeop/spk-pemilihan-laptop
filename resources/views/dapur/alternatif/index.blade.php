@@ -32,7 +32,8 @@
             <tbody class="bg-white divide-y divide-slate-200">
                 @forelse ($all_alternatif as $alternatif)
                     <tr>
-                        <x-td>{{ $loop->iteration }}</x-td>
+                        {{-- <x-td>{{ $loop->iteration }}</x-td> --}}
+                        <x-td>{{ $alternatif->id }}</x-td>
                         <x-td>{{ $alternatif->nama }}</x-td>
 
                         <td class="px-6 py-2 whitespace-nowrap text-sm">

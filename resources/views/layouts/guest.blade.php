@@ -18,6 +18,15 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <style>
+        .background-img {
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+    </style>
 </head>
 <body class="font-sans text-gray-800 antialiased">
 

@@ -38,7 +38,7 @@
         @isset($header)
             <header class="bg-white shadow">
                 <div class="max-w-6xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-                    <h2 class="font-medium text-lg text-slate-700 capitalize leading-relaxed">
+                    <h2 class="font-medium text-lg text-slate-600 capitalize leading-relaxed">
                         {{ $header }}
                     </h2>
                 </div>

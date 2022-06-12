@@ -3,11 +3,11 @@
 namespace App\Http\Services;
 
 use Illuminate\Support\Str;
-use App\Http\Traits\ColumnTrait;
+use App\Http\Traits\ColumnAlternatifTrait;
 
 class AlternatifService
 {
-    use ColumnTrait;
+    use ColumnAlternatifTrait;
 
     public function getAlternatifMaxBobot($alternatif, $representasi)
     {

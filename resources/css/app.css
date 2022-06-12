@@ -4,11 +4,11 @@
 
 @layer components {
     .btn-primary {
-        @apply inline-flex items-center px-4 py-2 bg-indigo-500 border border-transparent shadow-sm rounded-md font-medium text-xs text-indigo-50 uppercase tracking-widest hover:bg-indigo-600 focus:outline-none focus:border-indigo-900 focus:ring ring-indigo-300 disabled:opacity-25 transition ease-in-out duration-150;
+        @apply flex items-center px-4 py-2 bg-indigo-500 border border-transparent shadow-sm rounded-md font-medium text-xs text-indigo-50 uppercase tracking-widest hover:bg-indigo-600 focus:outline-none focus:border-indigo-900 focus:ring ring-indigo-300 disabled:opacity-25 transition ease-in-out duration-150;
     }
 
     .btn-secondary {
-        @apply inline-flex items-center px-4 py-2 bg-slate-50 border border-slate-400 shadow-sm sm:rounded-md font-medium text-xs text-slate-500 hover:text-slate-800 uppercase tracking-widest hover:bg-slate-100 focus:outline-none hover:border-slate-500 focus:ring ring-slate-300 disabled:opacity-25 transition ease-in-out duration-150;
+        @apply flex items-center px-4 py-2 bg-slate-50 border border-slate-400 shadow-sm rounded-md font-medium text-xs text-slate-500 hover:text-slate-800 uppercase tracking-widest hover:bg-slate-100 focus:outline-none hover:border-slate-500 focus:ring ring-slate-300 disabled:opacity-25 transition ease-in-out duration-150;
     }
 
     .btn-hover-primary {
@@ -17,5 +17,9 @@
 
     .btn-hover-danger {
         @apply p-2 font-medium text-red-500 hover:text-red-700 hover:underline;
+    }
+
+    .input-range {
+        @apply appearance-none bg-indigo-50 h-4 rounded shadow-sm border border-blue-500 focus:border-blue-700 focus:ring focus:ring-blue-400 focus:ring-opacity-50;
     }
 }

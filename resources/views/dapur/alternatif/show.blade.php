@@ -12,7 +12,7 @@
                     <span>Kembali</span>
                 </a>
 
-                <div>
+                <div class="flex">
                     @if ( is_null($alternatif->alternatif_max_bobot) )
                         <a href="{{ route('d.alternatif.max-bobot', $alternatif) }}" class="btn-secondary">
                             Hitung Max Bobot
@@ -23,7 +23,7 @@
                         </a>
                     @endif
 
-                    <button class="btn-secondary" x-on:click="showBobot = ! showBobot">Bobot</button>
+                    <button class="btn-secondary ml-2" x-on:click="showBobot = ! showBobot">Bobot</button>
                 </div>
             </div>
 
@@ -37,7 +37,7 @@
                         <form action="{{ route('d.alternatif.destroy', $alternatif) }}" method="POST" onsubmit="return confirm('Yakin untuk menghapus?')">
                             @csrf
                             @method('DELETE')
-                            <button class="btn-hover-danger text-sm tracking-wider">Hapus</button>
+                            <button class="btn-hover-danger text-sm tracking-wider ml-2">Hapus</button>
                         </form>
                     </div>
                 </div>

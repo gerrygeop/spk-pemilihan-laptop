@@ -6,7 +6,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
-trait ColumnTrait {
+trait ColumnAlternatifTrait {
 
     public function checkIfNameExists($columnName)
     {

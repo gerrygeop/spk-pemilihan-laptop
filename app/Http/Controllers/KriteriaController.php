@@ -9,11 +9,11 @@ use App\Http\Requests\KriteriaRequest;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
-use App\Http\Traits\ColumnTrait;
+use App\Http\Traits\ColumnAlternatifTrait;
 
 class KriteriaController extends Controller
 {
-    use ColumnTrait;
+    use ColumnAlternatifTrait;
 
     public function index()
     {
