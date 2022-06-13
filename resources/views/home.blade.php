@@ -1,7 +1,7 @@
 <x-app-layout>
-    {{-- <x-slot name="header">
-        Beranda
-    </x-slot> --}}
+    @if (session('not_found'))
+        <x-banner :message="session('not_found')" type="fail" />
+    @endif
 
     <x-container>
         <div x-data="{ openForm: false }">

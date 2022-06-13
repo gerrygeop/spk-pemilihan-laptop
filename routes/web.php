@@ -8,6 +8,7 @@ use App\Http\Controllers\{
     RepresentasiController,
     RekomendasiController,
     HomeController,
+    ProfileController,
 };
 
 
@@ -17,6 +18,10 @@ Route::get('/', function () {
 
 // Middelware Auth
 Route::middleware(['auth'])->group(function () {
+
+    Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+    Route::put('/profile/information', [ProfileController::class, 'updateUserInformation'])->name('profile.information');
+    Route::put('/profile/password', [ProfileController::class, 'updateUserPassword'])->name('profile.password');
 
     // Redirect to check role
     Route::get('/redirectAuthenticatedUsers', [RedirectAuthenticatedUsersController::class, 'home']);

@@ -20,15 +20,21 @@ class RekomendasiService
 
         foreach ( $kriteria_collect as $key => $value ) {
             if ( isset($representasi[$value]) ) {
-                $arr[] = [$key, $value];
+                $arr[] = [$key, '=', $value];
             } else {
                 $arr[] = [$key, '<=', $value];
             }
         }
         
         $alternatif = Alternatif::where($arr)->get();
+
+        if ( ($alternatif)->isEmpty() ) {
+            return null;
+        }
+
         $alternatif_nama = $alternatif->pluck('nama')->toArray();
         $alternatif_id = $alternatif->pluck('id')->toArray();
+
         $alternatif_max = AlternatifMaxBobot::whereIn('alternatif_id', $alternatif_id)->get($kriteria_nama_slug->toArray());
 
         foreach ( $kriteria as $ktr_key => $ktr ) {

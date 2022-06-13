@@ -1,8 +1,6 @@
 <x-app-layout>
     @if (session('success'))
-        <x-slot name="message">
-            {{ session('success') }}
-        </x-slot>
+        <x-banner :message="session('success')" />
     @endif
 
     <x-slot name="header">

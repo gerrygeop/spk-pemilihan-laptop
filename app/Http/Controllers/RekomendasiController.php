@@ -41,25 +41,32 @@ class RekomendasiController extends Controller
     public function store(Request $request, RekomendasiService $service)
     {
         $rekomendasi = $service->selectAlternatif($request->except('_token'));
-        $alternatif = Alternatif::whereIn('id', array_keys($rekomendasi))->get(['id', 'nama']);
-        $alternatif = $alternatif->pluck('id')->combine($alternatif->pluck('nama'))->toArray();
 
-        $slug = Str::random(10).time();
-        $now = Carbon::now();
-
-        foreach ($rekomendasi as $key => $value) {
-            $rek[] = [
-                'slug' => $slug,
-                'user_id' => auth()->user()->id,
-                'alternatif_id' => $key,
-                'bobot' => $value,
-                'created_at' => $now,
-            ];
+        if ( is_null($rekomendasi) ) {
+            return redirect()->route('home')->with('not_found', 'Tidak ada rekomendasi yang sesuai dengan kriteria yang dipilih');
+            
+        } else {
+            $alternatif = Alternatif::whereIn('id', array_keys($rekomendasi))->get(['id', 'nama']);
+            $alternatif = $alternatif->pluck('id')->combine($alternatif->pluck('nama'))->toArray();
+    
+            $slug = Str::random(10).time();
+            $now = Carbon::now();
+    
+            foreach ($rekomendasi as $key => $value) {
+                $rek[] = [
+                    'slug' => $slug,
+                    'user_id' => auth()->user()->id,
+                    'alternatif_id' => $key,
+                    'bobot' => $value,
+                    'created_at' => $now,
+                ];
+            }
+    
+            Rekomendation::insert($rek);
+    
+            return redirect()->route('rekomendasi.result', $slug);
         }
 
-        Rekomendation::insert($rek);
-
-        return redirect()->route('rekomendasi.result', $slug);
     }
 
     /* Function edit, update, destroy
