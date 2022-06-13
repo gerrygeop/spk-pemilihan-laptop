@@ -1,5 +1,5 @@
 <p align="center">
-<img src="public/img/welcom-page.png" width="400">
+<img src="public/img/welcome-page.png" width="500">
 </p>
 
 ## License
