@@ -49,4 +49,9 @@ class Kriteria extends Model
     {
         return $this->representasi->last()->max;
     }
+
+    public function calculations()
+    {
+        return $this->hasMany(Calculation::class);
+    }
 }
