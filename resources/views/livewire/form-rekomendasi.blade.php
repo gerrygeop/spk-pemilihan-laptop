@@ -5,7 +5,7 @@
             <div class="col">
                 <label for="checkbox_{{ $ktr->toSlug() }}" class="flex items-center">
                     <x-input 
-                        wire:model="nama_kriteria"
+                        wire:model="nama_kriteria.{{ $ktr->id }}"
                         type="checkbox"
                         name="checkbox_{{ $ktr->toSlug() }}" 
                         id="checkbox_{{ $ktr->toSlug() }}"

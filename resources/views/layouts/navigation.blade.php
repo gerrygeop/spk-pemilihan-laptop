@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white sm:border-b sm:border-slate-200 shadow-sm">
+<nav x-data="{ open: false }" class="bg-white sm:border-b sm:border-slate-200 shadow-sm" id="navigate">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -32,7 +32,7 @@
                                 Beranda
                             </x-nav-link>
                             <x-nav-link :href="route('rekomendasi.index')" :active="request()->routeIs('rekomendasi.*')">
-                                Riwayat
+                                Rekomendasi
                             </x-nav-link>
 
                         @endif
@@ -122,7 +122,7 @@
                         Beranda
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('rekomendasi.index')" :active="request()->routeIs('rekomendasi.*')">
-                        Riwayat
+                        Rekomendasi
                     </x-responsive-nav-link>
                     
                 @endif
