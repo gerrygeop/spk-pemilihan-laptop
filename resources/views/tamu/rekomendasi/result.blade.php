@@ -1,13 +1,20 @@
 <x-app-layout>
+    @if (session('new_results'))
+        <x-banner :message="session('new_results')" />
+    @endif
+
     <x-slot name="header">
         Rekomendasi
     </x-slot>
 
     <x-container>
-        <div class="flex items-center mb-5">
+        <div class="flex items-center justify-between mb-5">
             <a href="{{ route('rekomendasi.index') }}" class="btn-secondary">
                 <i class='bx bx-arrow-back bx-xs mr-1'></i>
                 <span>Kembali</span>
+            </a>
+            <a href="{{ route('rekomendasi.calculation', $slug) }}" class="btn-primary">
+                <span>Perhitungan</span>
             </a>
         </div>
 
@@ -16,6 +23,7 @@
                 <tr>
                     <x-th>#</x-th>
                     <x-th>Laptop</x-th>
+                    <x-th>Total Nilai</x-th>
                     <th scope="col" class="relative px-6 py-3">
                         <span class="sr-only">Actions</span>
                     </th>
@@ -30,6 +38,10 @@
                         </x-td>
                         <x-td :text="$loop->iteration < 4 ? 'text-indigo-600 font-semibold' : ''">
                             {{ $item->alternatif->nama }}
+                        </x-td>
+                        <x-td :text="$loop->iteration < 4 ? 'text-indigo-600 font-semibold' : ''">
+                            {{ number_format($item->bobot , 2); }}
+                            {{-- {{ $item->bobot }} --}}
                         </x-td>
 
                         <td class="px-6 py-4 whitespace-nowrap text-sm">

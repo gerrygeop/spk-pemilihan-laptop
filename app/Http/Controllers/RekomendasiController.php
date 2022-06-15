@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\{Arr, Str};
 use App\Http\Services\RekomendasiService;
-use App\Models\{Alternatif, Representasi, Rekomendation};
+use App\Models\{Alternatif, Representasi, Rekomendation, Calculation};
 use Carbon\Carbon;
 
 class RekomendasiController extends Controller
@@ -16,8 +16,7 @@ class RekomendasiController extends Controller
             ->where('user_id', auth()->user()->id)
             ->get()
             ->groupBy(function($item) {
-                // return $item->created_at->format('Y-m-d');
-                return Carbon::parse($item->created_at)->isoFormat('dddd, D MMMM Y');
+                return Carbon::parse($item->created_at)->isoFormat('dddd, D MMMM Y  hh:mm:ss');
             });
 
         return view('tamu.rekomendasi.index', compact('rekomendasi'));
@@ -26,10 +25,14 @@ class RekomendasiController extends Controller
     public function result($slug)
     {
         $rekomendasi = Rekomendation::with('alternatif')->where('slug', $slug)->get();
+        return view('tamu.rekomendasi.result', compact('rekomendasi', 'slug'));
+    }
 
-        return view('tamu.rekomendasi.result', [
-            'rekomendasi' => $rekomendasi,
-        ]);
+    public function calculation($slug, RekomendasiService $service)
+    {
+        $calculation = Calculation::where('slug', $slug)->get();
+        $array = $service->calculationHistory($calculation, $slug);
+        return view('tamu.rekomendasi.calculation', compact('calculation', 'slug', 'array'));
     }
 
     public function show(Alternatif $alternatif, $slug = null)
@@ -40,7 +43,8 @@ class RekomendasiController extends Controller
 
     public function store(Request $request, RekomendasiService $service)
     {
-        $rekomendasi = $service->selectAlternatif($request->except('_token'));
+        $slug = Str::random(10).time();
+        $rekomendasi = $service->calculationResults($request->except('_token'), $slug);
 
         if ( is_null($rekomendasi) ) {
             return redirect()->route('home')->with('not_found', 'Tidak ada rekomendasi yang sesuai dengan kriteria yang dipilih');
@@ -49,7 +53,6 @@ class RekomendasiController extends Controller
             $alternatif = Alternatif::whereIn('id', array_keys($rekomendasi))->get(['id', 'nama']);
             $alternatif = $alternatif->pluck('id')->combine($alternatif->pluck('nama'))->toArray();
     
-            $slug = Str::random(10).time();
             $now = Carbon::now();
     
             foreach ($rekomendasi as $key => $value) {
@@ -64,7 +67,7 @@ class RekomendasiController extends Controller
     
             Rekomendation::insert($rek);
     
-            return redirect()->route('rekomendasi.result', $slug);
+            return redirect()->route('rekomendasi.result', $slug)->with('new_results', 'Hasil rekomendasi dari pencarian anda');
         }
 
     }

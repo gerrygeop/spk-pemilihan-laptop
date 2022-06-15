@@ -68,6 +68,8 @@ Route::middleware(['auth'])->group(function () {
         // Rekomendasi
         Route::get('/rekomendasi', [RekomendasiController::class, 'index'])->name('rekomendasi.index');
         Route::get('/rekomendasi/{slug}/result', [RekomendasiController::class, 'result'])->name('rekomendasi.result');
+        Route::get('/rekomendasi/{slug}/calculation', [RekomendasiController::class, 'calculation'])->name('rekomendasi.calculation');
+
         Route::post('/rekomendasi', [RekomendasiController::class, 'store'])->name('rekomendasi.store');
         Route::get('/rekomendasi/create', [RekomendasiController::class, 'create'])->name('rekomendasi.create');
 
