@@ -35,6 +35,10 @@
 
         <div class="mb-4 mt-6 border-b border-gray-300"></div>
 
+        <div class="flex items-center">
+            <a href="{{ route('calculation') }}" class="btn-secondary inline">Hitung semua laptop</a>
+        </div>
+
         <x-table>
             <thead class="bg-slate-50">
                 <tr>

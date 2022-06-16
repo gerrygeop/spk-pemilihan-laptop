@@ -9,6 +9,7 @@ use App\Http\Controllers\{
     RekomendasiController,
     HomeController,
     ProfileController,
+    CalculationController,
 };
 
 
@@ -64,6 +65,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['checkRole:tamu'])->group(function() {
         Route::get('/home', [HomeController::class, 'home'])->name('home');
+        Route::get('/calculation', [CalculationController::class, 'index'])->name('calculation');
 
         // Rekomendasi
         Route::get('/rekomendasi', [RekomendasiController::class, 'index'])->name('rekomendasi.index');

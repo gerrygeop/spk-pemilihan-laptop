@@ -53,10 +53,6 @@ class RekomendasiService
             }
         }
 
-        // if ( isset($orWhere) ) {
-        //     return Alternatif::where($where)->orWhere($orWhere)->get();
-        // } else {
-        // }
         return Alternatif::where($where)->get();
     }
 
@@ -64,7 +60,6 @@ class RekomendasiService
     {
         $kriteria = $this->getManyKriteriaById(array_keys($request));
         $alternatif = $this->getAlternatif($kriteria, $request);
-        // $alternatif = Alternatif::where($conditions)->get();
         
         if ( ($alternatif)->isNotEmpty() && $this->saveKriteriaInput($request, $slug) ) {
             $alternatif_id = $alternatif->pluck('id')->toArray();
@@ -85,7 +80,6 @@ class RekomendasiService
 
         $kriteria = $this->getManyKriteriaById($kriteria_id);
         $alternatif = $this->getAlternatif($kriteria, $value);
-        // $alternatif = Alternatif::where($conditions)->get();
         
         if ( ($alternatif)->isNotEmpty() ) {
             $alternatif_id = $alternatif->pluck('id')->toArray();
